@@ -5,7 +5,7 @@ namespace RCaculator
 {
     public class VKeyBoard: UI
     {
-        private static readonly IText nullText = new NullText();
+        private static readonly IText nullText = new NoneText();
         private IText _text = nullText;
         public IText text
         {
@@ -20,7 +20,6 @@ namespace RCaculator
         public Button clearBtn { get;private set; }
         public Button dotBtn { get; private set; }
         public Button backBtn { get; private set; }
-
         public override void LoadProperty(Transform transform)
         {
             base.LoadProperty(transform);

@@ -11,32 +11,29 @@ namespace UnitTest
 {
     public class TestVKeyBoard
     {
-        private FloatText text;
+        private IText text;
         private Transform clone;
         private VKeyBoard ui;
 
         [SetUp]
         public void set()
         {
-            text = new FloatText();
-            var tet = new GameObject().AddComponent<Text>();
-            text.LoadProperty(tet.transform);
-            clone = NewKeyBoard();
+            var floatTxt= new FloatText();
+            floatTxt.LoadProperty(PrefabHelper.New("FloatText"));
+            text = floatTxt;
+            clone = PrefabHelper.New("VKeyBoard");
             ui = new VKeyBoard();
             ui.LoadProperty(clone);
             ui.text = text;
         }
-        private Transform NewKeyBoard()
-        {
-            return UnityEngine.Object.Instantiate(Resources.Load<Transform>("VKeyBoard"));
-        }
+
         [Test]
         public void TestNew()
         {
             Assert.AreSame(clone, ui.transform);
             Assert.AreEqual("0", text.text);
             ui = new VKeyBoard();
-            Assert.AreEqual(typeof(NullText), ui.text.GetType());
+            Assert.AreEqual(typeof(NoneText), ui.text.GetType());
         }
         [Test]
         public void testClear()
@@ -98,7 +95,7 @@ namespace UnitTest
             Assert.AreEqual("1.", text.text);
             ui.backBtn.onClick.Invoke();
             Assert.AreEqual("1", text.text);
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 ui.backBtn.onClick.Invoke();
                 Assert.AreEqual("0", text.text);
@@ -108,19 +105,24 @@ namespace UnitTest
         public void testException()
         {
             ui.text = null;
-            Assert.AreEqual(typeof(NullText), ui.text.GetType());
-            List<Button> buttons = new List<Button>();
-            buttons.AddRange(ui.numberBtns);
-            buttons.Add(ui.backBtn);
-            buttons.Add(ui.dotBtn);
-            buttons.Add(ui.clearBtn);
-            Assert.DoesNotThrow(() =>
+            Assert.AreEqual(typeof(NoneText), ui.text.GetType());
+            Assert.DoesNotThrow(ClockAllBtns);
+            ui.text = new NoneText();
+            Assert.DoesNotThrow(ClockAllBtns);
+        }
+
+        private void ClockAllBtns()
+        {
+            for (int i = 0; i < 10; i++)
             {
-                foreach (var item in buttons)
-                {
-                    item.onClick.Invoke();
-                }
-            });
+                ui.backBtn.onClick.Invoke();
+                ui.dotBtn.onClick.Invoke();
+                ui.clearBtn.onClick.Invoke();
+            }
+            foreach (var item in ui.numberBtns)
+            {
+                item.onClick.Invoke();
+            }
         }
     }
 }
