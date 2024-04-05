@@ -27,7 +27,7 @@ namespace RCaculator
 
         protected virtual bool isZero(float v)
         {
-            return Mathf.Abs(v) <= 1e-4;
+            return v==0;
         }
     }
 }

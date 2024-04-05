@@ -7,12 +7,13 @@ namespace UnitTest
     {
         internal float target;
         internal float[] used;
+        public float output = 1.23356f;
 
         public override float CaculateNeed(float target, float[] used)
         {
             this.target = target;
             this.used = used;
-            return 1.23356f;
+            return output;
         }
     }
 }

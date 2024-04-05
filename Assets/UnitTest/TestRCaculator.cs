@@ -55,6 +55,9 @@ namespace UnitTest
             {
                 Assert.AreEqual(i+1, test.used[i]);
             }
+            test.output = -0.001f;
+            ui.caculateBtn.onClick.Invoke();
+            Assert.AreEqual("不存在", ui.resultTxt.text);
         }
         [Test]
         public void testReset()

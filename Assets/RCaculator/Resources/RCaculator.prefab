@@ -105,7 +105,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6735336891138141615}
-  - {fileID: 4711184979229365283}
+  - {fileID: 6312678042254014466}
   - {fileID: 7582197366710927464}
   - {fileID: 716473865614406600}
   - {fileID: 5842276748799204484}
@@ -231,7 +231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 151, y: 136}
+  m_AnchoredPosition: {x: 151, y: 147.5}
   m_SizeDelta: {x: 573.1, y: 175.80005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3633595807008285496
@@ -1246,7 +1246,7 @@ PrefabInstance:
     - target: {fileID: 1655740253059296285, guid: 391fcfaa42528ee49923b9a47360d95d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 98.693726
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 1655740253059296285, guid: 391fcfaa42528ee49923b9a47360d95d,
         type: 3}
@@ -1680,7 +1680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391fcfaa42528ee49923b9a47360d95d, type: 3}
---- !u!224 &4711184979229365283 stripped
+--- !u!224 &6312678042254014466 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1655740253059296285, guid: 391fcfaa42528ee49923b9a47360d95d,
     type: 3}

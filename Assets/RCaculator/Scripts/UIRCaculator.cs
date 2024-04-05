@@ -32,7 +32,11 @@ namespace RCaculator
             caculateBtn = transform.GetChildComponent<Button>(nameof(caculateBtn));
             caculateBtn.onClick.AddListener(() =>
             {
-                resultTxt.text = caculator.CaculateNeed(targetTxt.value, getFloats()).ToString("F3");
+                float result = caculator.CaculateNeed(targetTxt.value, getFloats());
+                if (result >= 0)
+                    resultTxt.text = result.ToString("F3");
+                else
+                    resultTxt.text = "不存在";
             });
             resultTxt = transform.GetChildComponent<Text>(nameof(resultTxt));
             reset();
