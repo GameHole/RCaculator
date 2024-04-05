@@ -70,12 +70,23 @@ namespace UnitTest
             for (int i = 0; i < texts.Length; i++)
             {
                 texts[i].btn.onClick.Invoke();
-                for (int j = 0; j < texts.Length; j++)
-                {
-                    Assert.AreEqual(i == j, texts[j].tip.activeSelf);
-                }
-                Assert.AreSame(texts[i], key.text);
+                AssertSelected(key, mgr, texts, i);
             }
+            for (int i = 0; i < texts.Length; i++)
+            {
+                mgr.Select(i);
+                AssertSelected(key, mgr, texts, i);
+            }
+        }
+
+        private void AssertSelected(VKeyBoard key, FloatTextMgr mgr, FloatText[] texts, int i)
+        {
+            for (int j = 0; j < texts.Length; j++)
+            {
+                Assert.AreEqual(i == j, texts[j].tip.activeSelf);
+            }
+            Assert.AreSame(texts[i], key.text);
+            Assert.AreEqual(i, mgr.selectIndex);
         }
     }
 }

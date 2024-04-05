@@ -12,18 +12,20 @@ namespace RCaculator
         public Button caculateBtn { get;private set; }
         public ACaculator caculator { get; set; } = new Caculator();
         public Text resultTxt { get; private set; }
+        public Button resetBtn { get; private set; }
 
         public override void LoadProperty(Transform transform)
         {
             base.LoadProperty(transform);
             keyboard.LoadProperty(transform.Find(nameof(keyboard)));
             mgr = new FloatTextMgr(keyboard);
-            targetTxt.LoadProperty(transform.Find(nameof(targetTxt)));
+            var parent = transform.Find("texts");
+            targetTxt.LoadProperty(parent.Find(nameof(targetTxt)));
             mgr.Add(targetTxt);
             for (int i = 0; i < usedTxts.Length; i++)
             {
                 var item = new FloatText();
-                item.LoadProperty(transform.Find($"usedTxt{i}"));
+                item.LoadProperty(parent.Find($"usedTxt{i}"));
                 mgr.Add(item);
                 usedTxts[i] = item;
             }
@@ -33,6 +35,22 @@ namespace RCaculator
                 resultTxt.text = caculator.CaculateNeed(targetTxt.value, getFloats()).ToString("F3");
             });
             resultTxt = transform.GetChildComponent<Text>(nameof(resultTxt));
+            reset();
+            mgr.Select(0);
+            resetBtn = transform.GetChildComponent<Button>(nameof(resetBtn));
+            resetBtn.onClick.AddListener(() =>
+            {
+                for (int i = 0; i < mgr.Count; i++)
+                {
+                    mgr[i].Reset();
+                }
+                reset();
+            });
+        }
+
+        private void reset()
+        {
+            resultTxt.text = "0";
         }
 
         private float[] getFloats()

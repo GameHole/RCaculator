@@ -22,6 +22,7 @@ namespace UnitTest
         [Test]
         public void testTexts()
         {
+            Assert.AreEqual("0", ui.resultTxt.text);
             Assert.AreEqual("targetTxt", ui.targetTxt.transform.name);
             Assert.AreEqual(5, ui.mgr.Count);
             for (int i = 0; i < ui.usedTxts.Length; i++)
@@ -32,6 +33,7 @@ namespace UnitTest
             Assert.AreSame(ui.keyboard, ui.mgr.keyboard);
             Assert.AreSame(ui.targetTxt, ui.mgr[0]);
             Assert.AreEqual("keyboard", ui.keyboard.transform.name);
+            Assert.AreEqual(0, ui.mgr.selectIndex);
         }
         [Test]
         public void tesCaculate()
@@ -53,6 +55,21 @@ namespace UnitTest
             {
                 Assert.AreEqual(i+1, test.used[i]);
             }
+        }
+        [Test]
+        public void testReset()
+        {
+            for (int i = 0; i < ui.mgr.Count; i++)
+            {
+                ui.mgr[i].text = "1";
+            }
+            ui.resultTxt.text = "999";
+            ui.resetBtn.onClick.Invoke();
+            for (int i = 0; i < ui.mgr.Count; i++)
+            {
+                Assert.AreEqual("0", ui.mgr[i].text);
+            }
+            ui.resultTxt.text = "0";
         }
     }
 }

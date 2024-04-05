@@ -28,6 +28,11 @@ namespace RCaculator
             txt = transform.GetChildComponent<Text>(nameof(txt));
             btn = transform.GetChildComponent<Button>(nameof(btn));
             tip = transform.GetChildComponent<Transform>(nameof(tip)).gameObject;
+            Reset();
+        }
+
+        public void Reset()
+        {
             text = "0";
         }
     }
