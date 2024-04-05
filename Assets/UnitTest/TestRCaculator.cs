@@ -31,12 +31,28 @@ namespace UnitTest
             }
             Assert.AreSame(ui.keyboard, ui.mgr.keyboard);
             Assert.AreSame(ui.targetTxt, ui.mgr[0]);
+            Assert.AreEqual("keyboard", ui.keyboard.transform.name);
         }
         [Test]
         public void tesCaculate()
         {
             Assert.AreEqual("caculateBtn", ui.caculateBtn.name);
-            Assert.DoesNotThrow(ui.caculateBtn.onClick.Invoke);
+            Assert.AreEqual(typeof(Caculator), ui.caculator.GetType());
+            var test = new TCaculator();
+            ui.caculator = test;
+            ui.targetTxt.text = "10";
+            for (int i = 0; i < ui.usedTxts.Length; i++)
+            {
+                ui.usedTxts[i].text = (i + 1).ToString();
+            }
+            ui.caculateBtn.onClick.Invoke();
+            Assert.AreEqual("1.234", ui.resultTxt.text);
+            Assert.AreEqual(10,test.target);
+            Assert.AreEqual(4, test.used.Length);
+            for (int i = 0; i < test.used.Length; i++)
+            {
+                Assert.AreEqual(i+1, test.used[i]);
+            }
         }
     }
 }
