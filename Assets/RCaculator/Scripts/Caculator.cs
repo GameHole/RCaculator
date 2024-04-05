@@ -1,4 +1,6 @@
-﻿namespace RCaculator
+﻿using UnityEngine;
+
+namespace RCaculator
 {
     public class Caculator : ACaculator
     {
@@ -18,9 +20,14 @@
         }
         protected virtual float getReciprocal(float v)
         {
-            if (v == 0)
+            if (isZero(v))
                 return 0;
             return 1 / v;
+        }
+
+        protected virtual bool isZero(float v)
+        {
+            return Mathf.Abs(v) <= 1e-4;
         }
     }
 }

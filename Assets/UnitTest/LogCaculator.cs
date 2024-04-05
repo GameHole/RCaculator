@@ -14,5 +14,13 @@ namespace UnitTest
         {
             return base.getUseds(used);
         }
+        public float TgetReciprocal(float v)
+        {
+            return base.getReciprocal(v);
+        }
+        public bool TisZero(float v)
+        {
+            return base.isZero(v);
+        }
     }
 }

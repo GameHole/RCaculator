@@ -10,5 +10,12 @@ namespace RCaculator
             caculator = new UIRCaculator();
             caculator.LoadProperty(transform);
         }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
     }
 }

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/RCaculator/main.unity
+    guid: 589fda95d64b3e64c936429b494d03a5
   m_configObjects: {}

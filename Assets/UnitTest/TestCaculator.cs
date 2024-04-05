@@ -12,12 +12,14 @@ namespace UnitTest
     {
         private Caculator caculator;
         private float[] needs;
+        private LogCaculator log;
 
         [SetUp]
         public void set()
         {
             caculator = new Caculator();
             needs = new float[4];
+            log = new LogCaculator();
         }
         [Test]
         public void testDefault()
@@ -75,6 +77,8 @@ namespace UnitTest
             Assert.AreEqual(12, caculator.CaculateNeed(4f, new float[] { 6 }), 1e-4);
             Assert.AreEqual(-24f, caculator.CaculateNeed(4f, new float[] { 6, 8 }), 1e-4);
             Assert.AreEqual(60, caculator.CaculateNeed(4f, new float[] { 6, 15 }), 1e-4);
+            Assert.AreEqual(0, caculator.CaculateNeed(1.1f, new float[] { 2.1f,2.31f }), 1e-4);
+           
         }
         [Test]
         public void testFloat()
@@ -85,7 +89,6 @@ namespace UnitTest
         [Test]
         public void testGetNeeds()
         {
-            var log = new LogCaculator();
             log.useds = 1;
             Assert.AreEqual(0, log.CaculateNeed(1, needs));
             Assert.AreEqual(-2, log.CaculateNeed(2, needs));
@@ -99,7 +102,12 @@ namespace UnitTest
                 }
                 Assert.AreEqual(i * 0.5f, log.TGetUseds(needs));
             }
-            
+        }
+        [Test]
+        public void testIsZero()
+        {
+            Assert.IsTrue(log.TisZero(0));
+            Assert.IsTrue(log.TisZero(0.00009f));
         }
     }
 }
